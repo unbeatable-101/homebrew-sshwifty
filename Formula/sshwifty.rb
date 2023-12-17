@@ -28,7 +28,7 @@ class Sshwifty < Formula
   def caveats
     <<~EOS
       A sample configuration file has been installed at:
-        #{etc}/sshwifty/sshwifty.config.json
+        #{etc}/sshwifty/sshwifty.conf.json
       Please edit this file in order to properly configure your installation, see https://github.com/nirui/sshwifty for more info on the settings available.
     EOS
   end
