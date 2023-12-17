@@ -12,8 +12,16 @@ class Sshwifty < Formula
 
   def install
     inreplace "application/configuration/loader_file.go", "/etc/sshwifty.conf.json", "#{etc}/sshwifty.conf.json"
-    system "npm", "install", *Language::Node.local_npm_install_args
+    system "npm", "install"
     system "npm", "run", "build"
     bin.install "sshwifty"
+    etc.install "sshwifty.conf.example.json" => "sshwift.conf.json"
+  end
+  service do
+    run opt_bin/"sshwifty"
+    keep_alive true
+    environment_variables SSHWIFTY_CONFIG: "#{etc}/sshwifty/sshwifty.conf.json"
+    log_path var/"log/sshwifty.log"
+    error_log_path var/"log/sshwifty.log"
   end
 end
