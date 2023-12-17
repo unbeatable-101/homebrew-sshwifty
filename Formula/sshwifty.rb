@@ -52,10 +52,11 @@ class Sshwifty < Formula
           }
         ]
       }
-     EOS
-     fork do
-       system bin/"sshwifty"
-     end
-     assert_match "1", shell_output("curl -s http://localhost:#{port}|grep -c \"Also, surely you smart people knows that application such like this one require JavaScript to run :)\"")
+    EOS
+    fork do
+      system bin/"sshwifty"
+    end
+    assert_match "1", shell_output("curl -s http://localhost:#{port}|grep -c \"Also, surely you smart people " \
+                                   "knows that application such like this one require JavaScript to run :)\"")
   end
 end
