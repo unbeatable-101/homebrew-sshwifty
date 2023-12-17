@@ -54,8 +54,10 @@ class Sshwifty < Formula
       }
     EOS
     fork do
+      ENV["SSHWIFTY_CONFIG"] = testpath/"sshwifty.conf.json"
       system bin/"sshwifty"
     end
+    sleep 5
     assert_match "1", shell_output("curl -s http://localhost:#{port}|grep -c \"Also, surely you smart people " \
                                    "knows that application such like this one require JavaScript to run :)\"")
   end
