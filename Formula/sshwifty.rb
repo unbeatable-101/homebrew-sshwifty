@@ -8,19 +8,19 @@ class Sshwifty < Formula
 
   depends_on "go" => :build
   depends_on "node" => :build
-  depends_on "npm" => :build
 
   def install
-    inreplace "application/configuration/loader_file.go", "/etc/sshwifty.conf.json", "#{etc}/sshwifty.conf.json"
+    inreplace "application/configuration/loader_file.go", "/etc/sshwifty.conf.json", "#{etc}/sshwifty/sshwifty.conf.json"
     system "npm", "install"
     system "npm", "run", "build"
     bin.install "sshwifty"
-    etc.install "sshwifty.conf.example.json" => "sshwifty.conf.json"
+    mkdir "#{etc}/sshwifty"
+    etc.install "sshwifty.conf.example.json" => "sshwifty/sshwifty.conf.json"
   end
   service do
     run opt_bin/"sshwifty"
     keep_alive true
-    environment_variables SSHWIFTY_CONFIG: "#{etc}/sshwifty.conf.json"
+    environment_variables SSHWIFTY_CONFIG: "#{etc}/sshwifty/sshwifty.conf.json"
     log_path var/"log/sshwifty.log"
     error_log_path var/"log/sshwifty.log"
   end
@@ -28,7 +28,7 @@ class Sshwifty < Formula
   def caveats
     <<~EOS
       A sample configuration file has been installed at:
-        #{etc}/sshwifty.config.json
+        #{etc}/sshwifty/sshwifty.config.json
       Please edit this file in order to properly configure your installation, see https://github.com/nirui/sshwifty for more info on the settings available.
     EOS
   end
