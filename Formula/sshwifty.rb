@@ -31,7 +31,6 @@ class Sshwifty < Formula
     log_path var/"log/sshwifty.log"
     error_log_path var/"log/sshwifty.log"
   end
-
   def caveats
     <<~EOS
       A sample configuration file has been installed at:
