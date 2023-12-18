@@ -9,6 +9,12 @@ class Sshwifty < Formula
   depends_on "go" => :build
   depends_on "node" => :build
 
+  bottle do
+    root_url ""
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "3227b607a9990c7992c58e609d94ab7ad8f7d10f091c5b16810a033b443964af"
+  end
+
   def install
     inreplace "application/configuration/loader_file.go", "/etc/sshwifty.conf.json", "#{etc}/sshwifty/sshwifty.conf.json"
     system "npm", "install"
