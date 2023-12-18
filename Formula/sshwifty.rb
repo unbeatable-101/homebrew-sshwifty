@@ -2,7 +2,8 @@ class Sshwifty < Formula
   desc "Web SSH & Telnet"
   homepage "https://github.com/nirui/sshwifty"
   url "https://github.com/nirui/sshwifty.git"
-  version "0.3.4-beta-release"
+    tag:      "0.3.4-beta-release"
+    revision: "16db94b8f76578a4819cacbf407ff68d47a8f365"
   sha256 "446bbeb81da5a0c15a3f24f28a1f335bbff40112d1c6eacd65eafabe2f9f74e4"
   license "AGPL-3.0-or-later"
 
