@@ -6,12 +6,6 @@ class Sshwifty < Formula
   sha256 "446bbeb81da5a0c15a3f24f28a1f335bbff40112d1c6eacd65eafabe2f9f74e4"
   license "AGPL-3.0-or-later"
 
-  bottle do
-    root_url "https://github.com/unbeatable-101/homebrew-sshwifty/raw/main"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_sonoma: "3227b607a9990c7992c58e609d94ab7ad8f7d10f091c5b16810a033b443964af"
-  end
-
   depends_on "go" => :build
   depends_on "node" => :build
 
