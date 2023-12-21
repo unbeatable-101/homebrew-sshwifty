@@ -2,8 +2,8 @@ class Sshwifty < Formula
   desc "Web SSH & Telnet"
   homepage "https://github.com/nirui/sshwifty"
   url "https://github.com/nirui/sshwifty.git",
-    tag:      "0.3.4-beta-release",
-    revision: "16db94b8f76578a4819cacbf407ff68d47a8f365"
+    tag:      "0.3.5-beta-release",
+    revision: "22e6c7c0e55e3a9d9697d00e972a8c8fb84babe8"
   license "AGPL-3.0-or-later"
 
   depends_on "go" => :build
