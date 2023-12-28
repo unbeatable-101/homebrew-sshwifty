@@ -9,6 +9,11 @@ class Sshwifty < Formula
   depends_on "go" => :build
   depends_on "node" => :build
 
+  livecheck do
+    url :url
+    regex(/(\d+(?:\.\d+)+-beta-release)/i)
+  end
+
   def install
     inreplace "application/configuration/loader_file.go", "/etc/sshwifty.conf.json", "#{etc}/sshwifty/sshwifty.conf" \
                                                                                      ".json"
