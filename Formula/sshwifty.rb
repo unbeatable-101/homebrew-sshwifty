@@ -1,3 +1,4 @@
+require "language/node"
 class Sshwifty < Formula
   desc "Web SSH & Telnet"
   homepage "https://github.com/nirui/sshwifty"
@@ -6,23 +7,25 @@ class Sshwifty < Formula
     revision: "22e6c7c0e55e3a9d9697d00e972a8c8fb84babe8"
   license "AGPL-3.0-or-later"
 
-  depends_on "go" => :build
-  depends_on "node" => :build
-
   livecheck do
     url :url
     regex(/(\d+(?:\.\d+)+-beta-release)/i)
   end
 
+  depends_on "go" => :build
+  depends_on "node" => :build
+
   def install
+    # Changing one of the default paths searched for config file to homebrew's etc folder
     inreplace "application/configuration/loader_file.go", "/etc/sshwifty.conf.json", "#{etc}/sshwifty/sshwifty.conf" \
                                                                                      ".json"
-    system "npm", "install"
+    system "npm", "install", *Language::Node.local_npm_install_args
     system "npm", "run", "build"
     bin.install "sshwifty"
     mkdir "#{etc}/sshwifty"
     etc.install "sshwifty.conf.example.json" => "sshwifty/sshwifty.conf.json"
   end
+
   service do
     run opt_bin/"sshwifty"
     keep_alive true
@@ -38,6 +41,7 @@ class Sshwifty < Formula
       Please edit this file in order to properly configure your installation, see https://github.com/nirui/sshwifty for more info on the settings available.
     EOS
   end
+
   test do
     port = free_port
     (testpath/"sshwifty.conf.json").write <<~EOS
