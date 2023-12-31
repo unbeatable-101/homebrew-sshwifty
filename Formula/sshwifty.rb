@@ -6,7 +6,7 @@ class Sshwifty < Formula
     tag:      "0.3.5-beta-release",
     revision: "22e6c7c0e55e3a9d9697d00e972a8c8fb84babe8"
   license "AGPL-3.0-or-later"
-  revision 2
+  revision 3
 
   livecheck do
     url :url
