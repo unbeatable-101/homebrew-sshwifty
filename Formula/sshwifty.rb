@@ -13,6 +13,11 @@ class Sshwifty < Formula
     regex(/(\d+(?:\.\d+)+-beta-release)/i)
   end
 
+  bottle do
+    root_url "https://github.com/unbeatable-101/homebrew-sshwifty/releases/download/sshwifty-0.3.5-beta_1"
+    sha256 cellar: :any_skip_relocation, ventura: "816b0e03845995bdb76acc8c42c23c897de338d12d17948a7c9a744c4c989dc2"
+  end
+
   depends_on "go" => :build
   depends_on "node" => :build
 
