@@ -3,10 +3,9 @@ class Sshwifty < Formula
   desc "Web SSH & Telnet"
   homepage "https://github.com/nirui/sshwifty"
   url "https://github.com/nirui/sshwifty.git",
-    tag:      "0.3.5-beta-release",
-    revision: "22e6c7c0e55e3a9d9697d00e972a8c8fb84babe8"
+    tag:      "0.3.6-beta-release",
+    revision: "3283f90853f496b5bfa7772f7b4e68c8f6bf31fb"
   license "AGPL-3.0-or-later"
-  revision 1
 
   livecheck do
     url :url
@@ -14,8 +13,8 @@ class Sshwifty < Formula
   end
 
   bottle do
-    root_url "https://github.com/unbeatable-101/homebrew-sshwifty/releases/download/sshwifty-0.3.5-beta_1"
-    sha256 cellar: :any_skip_relocation, ventura: "816b0e03845995bdb76acc8c42c23c897de338d12d17948a7c9a744c4c989dc2"
+    root_url "https://github.com/unbeatable-101/homebrew-sshwifty/releases/download/sshwifty-0.3.6-beta"
+    sha256 cellar: :any_skip_relocation, ventura: "6d93064e715a0ed8c11868af15b5254036ee225895357d71bf54adef239aa6ae"
   end
 
   depends_on "go" => :build
