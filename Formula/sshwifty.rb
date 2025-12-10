@@ -3,8 +3,8 @@ class Sshwifty < Formula
   desc "Web SSH & Telnet"
   homepage "https://github.com/nirui/sshwifty"
   url "https://github.com/nirui/sshwifty.git",
-    tag:      "0.3.6-beta-release",
-    revision: "3283f90853f496b5bfa7772f7b4e68c8f6bf31fb"
+    tag:      "0.4.2-beta-release-prebuild",
+    revision: "f3e550d4358f8ad3959c8cc2b77ce28b0d74c954"
   license "AGPL-3.0-or-later"
 
   livecheck do
@@ -24,7 +24,7 @@ class Sshwifty < Formula
     # Changing one of the default paths searched for config file to homebrew's etc folder
     inreplace "application/configuration/loader_file.go", "/etc/sshwifty.conf.json", "#{etc}/sshwifty/sshwifty.conf" \
                                                                                      ".json"
-    system "npm", "install", *Language::Node.local_npm_install_args
+    system "npm", "install", *Language::Node.std_npm_args
     system "npm", "run", "build"
     bin.install "sshwifty"
     mkdir "#{etc}/sshwifty"
