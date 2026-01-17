@@ -3,32 +3,32 @@ class Sshwifty < Formula
   desc "Web SSH & Telnet"
   homepage "https://github.com/nirui/sshwifty"
   url "https://github.com/nirui/sshwifty.git",
-    tag:      "0.4.2-beta-release",
-    revision: "f3e550d4358f8ad3959c8cc2b77ce28b0d74c954"
+    tag:      "0.4.3-beta-release",
+    revision: "5206d9964127fc65d994cd124a84a09aa0fe893c"
   license "AGPL-3.0-or-later"
 
   livecheck do
-    url :url
-    regex(/(\d+(?:\.\d+)+-beta-release)/i)
-  end
-
-  bottle do
-    root_url "https://github.com/unbeatable-101/homebrew-sshwifty/releases/download/sshwifty-0.3.6-beta"
-    sha256 cellar: :any_skip_relocation, ventura: "6d93064e715a0ed8c11868af15b5254036ee225895357d71bf54adef239aa6ae"
+    skip "Beta-only upstream; livecheck disabled for tap"
   end
 
   depends_on "go" => :build
   depends_on "node" => :build
 
   def install
-    # Changing one of the default paths searched for config file to homebrew's etc folder
-    inreplace "application/configuration/loader_file.go", "/etc/sshwifty.conf.json", "#{etc}/sshwifty/sshwifty.conf" \
-                                                                                     ".json"
-    system "npm", "install", *Language::Node.local_npm_install_args
+    inreplace "application/configuration/loader_file.go",
+              "/etc/sshwifty.conf.json",
+              "#{etc}/sshwifty/sshwifty.conf.json"
+
+    system "npm", "ci"
     system "npm", "run", "build"
+
+    system "go", "build",
+           "-ldflags",
+           "-s -w -X github.com/nirui/sshwifty/application.version=#{version}"
+
     bin.install "sshwifty"
-    mkdir "#{etc}/sshwifty"
-    etc.install "sshwifty.conf.example.json" => "sshwifty/sshwifty.conf.json"
+
+    (etc/"sshwifty").install "sshwifty.conf.example.json" => "sshwifty.conf.json"
   end
 
   service do
