@@ -11,7 +11,6 @@ class Sshwifty < Formula
     skip "Beta-only upstream; livecheck disabled for tap"
   end
 
-
   depends_on "go" => :build
   depends_on "node" => :build
 
