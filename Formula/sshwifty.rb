@@ -8,9 +8,9 @@ class Sshwifty < Formula
   license "AGPL-3.0-or-later"
 
   livecheck do
-    url :url
-    regex(/(\d+(?:\.\d+)+-beta-release)/i)
+    skip "Beta-only upstream; livecheck disabled for tap"
   end
+
 
   depends_on "go" => :build
   depends_on "node" => :build
